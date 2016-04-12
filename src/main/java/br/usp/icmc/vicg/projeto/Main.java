@@ -5,20 +5,29 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.JFrame;
+
 public class Main {
+    
     public static void main(String[] args) {
+        // Get GL3 profile (to work with OpenGL 4.0)
         GLProfile profile= GLProfile.get(GLProfile.GL3);
+        
+        // Configurations
         GLCapabilities cap = new GLCapabilities(profile);
         cap.setDoubleBuffered(true);
         cap.setHardwareAccelerated(true);
         
+        // Create canvas
         GLCanvas canvas = new GLCanvas(cap);
         
-        canvas.addGLEventListener(new Scene());
+        //Add listener
+        Scene scene = new Scene();
+        canvas.addGLEventListener(scene);
         
         JFrame frame = new JFrame();
-        frame.getContentPane().add(canvas);
         frame.setSize(800, 800);
+        frame.addKeyListener(scene);
+        frame.getContentPane().add(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
