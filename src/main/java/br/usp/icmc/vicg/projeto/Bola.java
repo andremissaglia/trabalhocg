@@ -11,8 +11,7 @@ public class Bola extends Objeto{
     @Override
     public void update() {
         super.update();
-        sx = sy = sz= 0.01f;
-        tx +=0.01f;
+        sx = sy = sz= 0.1f;
     }
     
 }
