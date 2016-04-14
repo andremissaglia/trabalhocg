@@ -71,7 +71,7 @@ public abstract class Objeto {
             model.draw();
         }
         for(Objeto filho : filhos){
-            filho.draw(gl, transform);
+            filho.draw(gl, objTransform);
         }
         
     }

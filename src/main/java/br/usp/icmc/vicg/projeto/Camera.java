@@ -11,4 +11,16 @@ public class Camera {
     public void draw(GL3 gl, Objeto root){
         
     }
+    public void rollup(){
+        
+    }
+    public void rolldown(){
+        
+    }
+    public void rollleft(){
+        
+    }
+    public void rollright(){
+        
+    }
 }

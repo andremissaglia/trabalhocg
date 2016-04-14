@@ -24,12 +24,15 @@ public class Matrix4 {
     stack = new Stack<float[]>();
     loadIdentity();
   }
+  public Matrix4(float[] mat) {
+    matrix = mat;
+    stack = new Stack<float[]>();
+  }
   public Matrix4(Matrix4 m) {
     this.matrix = m.matrix.clone();
     this.stack = new Stack<>();
     this.gl = m.gl;
     this.handle = m.handle;
-    loadIdentity();
   }
 
   public void init(final GL3 gl, int handle) {
@@ -246,7 +249,9 @@ public class Matrix4 {
     vector[1] /= norm;
     vector[2] /= norm;
   }
-
+  public void multiply(Matrix4 mat){
+      this.multiply(mat.matrix);
+  }
   private void multiply(float[] mat2) {
     // Cache the matrix values (makes for huge speed increases!)
     float a00 = this.matrix[0], a01 = this.matrix[1], a02 = this.matrix[2], a03 = this.matrix[3];
