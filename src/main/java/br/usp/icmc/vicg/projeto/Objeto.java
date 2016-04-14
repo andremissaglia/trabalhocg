@@ -17,9 +17,7 @@ public abstract class Objeto {
     protected float sy;
     protected float sz;
     
-    protected float rx;
-    protected float ry;
-    protected float rz;
+    protected Quaternion rotation;
     
     private SimpleModel model;
     protected ArrayList<Objeto> filhos;
@@ -41,9 +39,7 @@ public abstract class Objeto {
         this.sy = 1;
         this.sz = 1;
         
-        this.rx = 0;
-        this.ry = 0;
-        this.rz = 0;
+        this.rotation = Quaternion.getRotation(0, 0, 0, 1);
         
         model.init(gl, shader);
     }
@@ -62,9 +58,7 @@ public abstract class Objeto {
         Matrix4 objTransform = new Matrix4(transform);
         objTransform.translate(tx, ty, tz);
         objTransform.scale(sx, sy, sz);
-        if(rx != 0) objTransform.rotate(rx, 1, 0, 0);
-        if(ry != 0) objTransform.rotate(ry, 0, 1, 0);
-        if(rz != 0) objTransform.rotate(rz, 0, 0, 1);
+        objTransform.multiply(this.rotation.getMatrix());
         if(model != null){
             objTransform.bind();
             model.bind();
@@ -74,5 +68,9 @@ public abstract class Objeto {
             filho.draw(gl, objTransform);
         }
         
+    }
+    protected void rotate(float x, float y, float z, float theta){
+        Quaternion r = Quaternion.getRotation(x, y, z, theta);
+        this.rotation = this.rotation.multiply(r);
     }
 }
