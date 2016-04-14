@@ -1,12 +1,14 @@
 package br.usp.icmc.vicg.projeto;
 
+import br.usp.icmc.vicg.gl.model.Cube;
 import br.usp.icmc.vicg.gl.model.Sphere;
+import br.usp.icmc.vicg.gl.model.WiredCube;
 
 
 public class Bola extends Objeto{
 
     public Bola() {
-        setModel(new Sphere());
+        setModel(new WiredCube());
     }
     @Override
     public void update() {
