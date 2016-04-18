@@ -12,7 +12,6 @@ public class Camera {
     private float x;
     private float y;
     private float z;
-    private float avanco;
     public Camera() {
         modelMatrix = new Matrix4();
         projectionMatrix = new Matrix4();
@@ -37,13 +36,17 @@ public class Camera {
         viewMatrix.bind();
     }
     public void draw(GL3 gl, Objeto root){
+//        viewMatrix.loadIdentity();
+//        viewMatrix.multiply(this.rotation.getMatrix());
+//        viewMatrix.translate(x, y, z);
+//        viewMatrix.bind();
         root.draw(gl, modelMatrix);
+    }
+    public void setViewMatrix(Matrix4 myViewMatrix){
         viewMatrix.loadIdentity();
-        viewMatrix.translate(x, y, z);
-        viewMatrix.multiply(this.rotation.getMatrix());
+        viewMatrix.multiply(myViewMatrix);
+        //viewMatrix.translate(x, y, z);
         viewMatrix.bind();
-        
-        
     }
     public void rollup(){
         Quaternion r = Quaternion.getRotation(1, 0, 0, -0.1f);
@@ -69,8 +72,5 @@ public class Camera {
         this.x += x;
         this.y += y;
         this.z += z;
-    }
-    public void avancar(float a){
-        this.avanco += a;
     }
 }

@@ -1,5 +1,6 @@
 package br.usp.icmc.vicg.projeto;
 
+import br.usp.icmc.vicg.projeto.components.Component;
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 import br.usp.icmc.vicg.gl.model.SimpleModel;
 import br.usp.icmc.vicg.gl.util.Shader;
@@ -7,8 +8,7 @@ import br.usp.icmc.vicg.gl.util.ShaderFactory;
 import java.util.ArrayList;
 import javax.media.opengl.GL3;
 
-public abstract class Objeto {
-    private Shader shader;
+public class Objeto {
     protected float tx;
     protected float ty;
     protected float tz;
@@ -19,11 +19,12 @@ public abstract class Objeto {
     
     protected Quaternion rotation;
     
-    private SimpleModel model;
+    private ArrayList<Component> components;
     protected ArrayList<Objeto> filhos;
 
     public Objeto() {
         this.filhos = new ArrayList<>();
+        this.components = new ArrayList<>();
     }
     
     public void init(GL3 gl, Shader shader){
@@ -40,16 +41,20 @@ public abstract class Objeto {
         this.sz = 1;
         
         this.rotation = Quaternion.getRotation(0, 0, 0, 1);
-        
-        model.init(gl, shader);
-    }
-    protected void setModel(SimpleModel model){
-        this.model = model;
+        for(Component c : components){
+            c.init(gl, shader);
+        }
     }
     public void addChild(Objeto obj){
         filhos.add(obj);
     }
+    public void addComponent(Component c){
+        components.add(c);
+    }
     public void update(){
+        for(Component c : components){
+            c.update();
+        }
         for(Objeto filho : filhos){
             filho.update();
         }
@@ -59,18 +64,16 @@ public abstract class Objeto {
         objTransform.translate(tx, ty, tz);
         objTransform.scale(sx, sy, sz);
         objTransform.multiply(this.rotation.getMatrix());
-        if(model != null){
-            objTransform.bind();
-            model.bind();
-            model.draw();
+        for(Component c : components){
+            c.draw(gl, objTransform);
         }
         for(Objeto filho : filhos){
             filho.draw(gl, objTransform);
         }
         
     }
-    protected void rotate(float x, float y, float z, float theta){
-        Quaternion r = Quaternion.getRotation(x, y, z, theta);
+    public void rotate(float x, float y, float z, float theta){
+        Quaternion r = Quaternion.getRotation(x, y, z, (float) Math.toRadians(theta));
         this.rotation = this.rotation.multiply(r);
     }
 }

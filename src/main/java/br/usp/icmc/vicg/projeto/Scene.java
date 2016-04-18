@@ -23,19 +23,26 @@ public class Scene extends KeyAdapter implements GLEventListener{
     private final Objeto root;
     private final Shader shader;
     private Camera camera;
-
+    private static Scene scene;
     public Scene(){
         shader = ShaderFactory.getInstance(ShaderFactory.ShaderType.VIEW_MODEL_PROJECTION_MATRIX_SHADER);
-        root = new Bola();
+        root = new Objeto();
+        root.addChild(new Nave());
+        root.addChild(new Bola());
         this.camera = new Camera();
         
     }
-    
+    public static Scene getScene(){
+        return scene;
+    }
+    public Camera getCamera(){
+        return this.camera;
+    }
     @Override
     public void init(GLAutoDrawable glad) {
         GL3 gl = glad.getGL().getGL3();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        
+        Scene.scene = this;
         //Inicializa os Shaders
         shader.init(gl);
         
@@ -48,7 +55,7 @@ public class Scene extends KeyAdapter implements GLEventListener{
         root.init(gl, shader);
         
     }
-
+    
     @Override
     public void dispose(GLAutoDrawable glad) {
     }
@@ -82,12 +89,6 @@ public class Scene extends KeyAdapter implements GLEventListener{
                 break;
             case KeyEvent.VK_RIGHT:
                 camera.rollright();
-                break;
-            case KeyEvent.VK_SHIFT:
-                camera.avancar(0.5f);
-                break;
-            case KeyEvent.VK_SPACE:
-                camera.avancar(-0.5f);
                 break;
         }
     }

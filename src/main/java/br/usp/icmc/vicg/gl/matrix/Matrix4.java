@@ -155,7 +155,38 @@ public class Matrix4 {
     this.matrix[10] = a02 * b20 + a12 * b21 + a22 * b22;
     this.matrix[11] = a03 * b20 + a13 * b21 + a23 * b22;
   }
-
+  public void invert(){
+    float a00, a01, a02, a03,
+        a10, a11, a12, a13,
+        a20, a21, a22, a23,
+        a30, a31, a32, a33;
+    a00 = this.matrix[0];
+    a01 = this.matrix[1];
+    a02 = this.matrix[2];
+    a03 = this.matrix[3];
+    a10 = this.matrix[4];
+    a11 = this.matrix[5];
+    a12 = this.matrix[6];
+    a13 = this.matrix[7];
+    a20 = this.matrix[8];
+    a21 = this.matrix[9];
+    a22 = this.matrix[10];
+    a23 = this.matrix[11];
+    a30 = this.matrix[12];
+    a31 = this.matrix[13];
+    a32 = this.matrix[14];
+    a33 = this.matrix[15];
+    
+    this.matrix[1] = a10;
+    this.matrix[2] = a20;
+    this.matrix[4] = a01;
+    this.matrix[6] = a21;
+    this.matrix[8] = a02;
+    this.matrix[9] = a12;
+    this.matrix[12] = -a00*a30 - a01*a31 - a02*a32;
+    this.matrix[13] = -a10*a30 - a11*a31 - a12*a32;
+    this.matrix[14] = -a20*a30 - a21*a31 - a22*a32;
+  }
   public void push() {
     stack.push(this.matrix.clone());
   }
