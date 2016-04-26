@@ -10,10 +10,12 @@ import br.usp.icmc.vicg.gl.util.Shader;
 import br.usp.icmc.vicg.gl.util.ShaderFactory;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.media.opengl.GL;
 import javax.media.opengl.GL3;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
+import javax.media.opengl.awt.GLCanvas;
 
 /**
  *
@@ -24,16 +26,28 @@ public class Scene extends KeyAdapter implements GLEventListener{
     private final Shader shader;
     private Camera camera;
     private static Scene scene;
-    public Scene(){
+    private ArrayList<KeyEventListener> keyboardListeners;
+    public static Scene getScene(){
+        return scene;
+    }
+    public void addKeyboardListener(KeyEventListener eventListener){
+        keyboardListeners.add(eventListener);
+    }
+    public Scene() {
         shader = ShaderFactory.getInstance(ShaderFactory.ShaderType.VIEW_MODEL_PROJECTION_MATRIX_SHADER);
         root = new Objeto();
         root.addChild(new Nave());
-        root.addChild(new Bola());
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                for(int k = 0; k < 10;k++){
+                    root.addChild(new Bola(i,j,k));
+                }
+                
+            }
+        }
+//        
         this.camera = new Camera();
-        
-    }
-    public static Scene getScene(){
-        return scene;
+        this.keyboardListeners = new ArrayList<>();
     }
     public Camera getCamera(){
         return this.camera;
@@ -76,20 +90,8 @@ public class Scene extends KeyAdapter implements GLEventListener{
     
     @Override
     public void keyPressed(KeyEvent e){
-        
-        switch(e.getKeyCode()){
-            case KeyEvent.VK_UP:
-                camera.rollup();
-                break;
-            case KeyEvent.VK_DOWN:
-                camera.rolldown();
-                break;
-            case KeyEvent.VK_LEFT:
-                camera.rollleft();
-                break;
-            case KeyEvent.VK_RIGHT:
-                camera.rollright();
-                break;
+        for(KeyEventListener kel : keyboardListeners){
+            kel.keyPressed(e);
         }
     }
 }

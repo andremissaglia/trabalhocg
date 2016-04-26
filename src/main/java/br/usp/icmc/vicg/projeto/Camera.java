@@ -39,14 +39,14 @@ public class Camera {
 //        viewMatrix.loadIdentity();
 //        viewMatrix.multiply(this.rotation.getMatrix());
 //        viewMatrix.translate(x, y, z);
-//        viewMatrix.bind();
+        viewMatrix.bind();
         root.draw(gl, modelMatrix);
     }
     public void setViewMatrix(Matrix4 myViewMatrix){
         viewMatrix.loadIdentity();
         viewMatrix.multiply(myViewMatrix);
         //viewMatrix.translate(x, y, z);
-        viewMatrix.bind();
+//        viewMatrix.bind();
     }
     public void rollup(){
         Quaternion r = Quaternion.getRotation(1, 0, 0, -0.1f);

@@ -20,6 +20,12 @@ public class Quaternion {
         this.z = (float) z;
         this.w = (float) w;
     }
+    public Quaternion(Vector3 vector){
+        this.x = vector.x;
+        this.y = vector.y;
+        this.z = vector.z;
+        this.w = 0;
+    }
     public static Quaternion getRotation(float vx, float vy, float vz, float theta){
         Quaternion q = new Quaternion(vx*Math.sin(theta/2), vy*Math.sin(theta/2), vz*Math.sin(theta/2), Math.cos(theta/2));
         q.normalize();
@@ -36,9 +42,9 @@ public class Quaternion {
     }
     public Quaternion multiply(Quaternion r){
          float w = this.w*r.w - this.x*r.x - this.y*r.y - this.z*r.z;
-         float x = this.w*r.x + this.x*r.w - this.y*r.z + this.z*r.y;
-         float y = this.w*r.y + this.x*r.z + this.y*r.w - this.z*r.x;
-         float z = this.w*r.z - this.x*r.y + this.y*r.x + this.z*r.w;
+         float x = this.w*r.x + this.x*r.w + this.y*r.z - this.z*r.y;
+         float y = this.w*r.y - this.x*r.z + this.y*r.w + this.z*r.x;
+         float z = this.w*r.z + this.x*r.y - this.y*r.x + this.z*r.w;
         return new Quaternion(x,y,z,w);
     }
     public void divide(float a){
@@ -54,7 +60,7 @@ public class Quaternion {
         return x*x+y*y+z*z+w*w;
     }
     public Quaternion conjugate(){
-        return new Quaternion(x, -y, -z, -w);
+        return new Quaternion(-x, -y, -z, w);
     }
     public Matrix4 getMatrix(){
         float mat[] = new float[16];
@@ -78,5 +84,13 @@ public class Quaternion {
     }
     public void normalize(){
         this.divide(this.norm());
+    }
+    public Vector3 asVec(){
+        return new Vector3(x, y, z);
+    }
+    public static Vector3 rotate(Vector3 point, Quaternion rotation){
+        Quaternion p = (new Quaternion(point));
+        Quaternion res = rotation.multiply(p).multiply(rotation.conjugate());
+        return res.asVec();
     }
 }

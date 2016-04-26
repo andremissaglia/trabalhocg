@@ -21,16 +21,12 @@ public class Objeto {
     
     private ArrayList<Component> components;
     protected ArrayList<Objeto> filhos;
+    
+    private Objeto father;
 
     public Objeto() {
         this.filhos = new ArrayList<>();
         this.components = new ArrayList<>();
-    }
-    
-    public void init(GL3 gl, Shader shader){
-        for(Objeto filho : filhos){
-            filho.init(gl, shader);
-        }
         
         this.tx = 0;
         this.ty = 0;
@@ -39,6 +35,12 @@ public class Objeto {
         this.sx = 1;
         this.sy = 1;
         this.sz = 1;
+    }
+    
+    public void init(GL3 gl, Shader shader){
+        for(Objeto filho : filhos){
+            filho.init(gl, shader);
+        }
         
         this.rotation = Quaternion.getRotation(0, 0, 0, 1);
         for(Component c : components){
@@ -47,6 +49,7 @@ public class Objeto {
     }
     public void addChild(Objeto obj){
         filhos.add(obj);
+        obj.father = this;
     }
     public void addComponent(Component c){
         components.add(c);
@@ -74,6 +77,7 @@ public class Objeto {
     }
     public void rotate(float x, float y, float z, float theta){
         Quaternion r = Quaternion.getRotation(x, y, z, (float) Math.toRadians(theta));
-        this.rotation = this.rotation.multiply(r);
+        this.rotation = r.multiply(this.rotation);
     }
+//    public void 
 }
