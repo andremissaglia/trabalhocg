@@ -94,4 +94,12 @@ public class Scene extends KeyAdapter implements GLEventListener{
             kel.keyPressed(e);
         }
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        for(KeyEventListener kel : keyboardListeners){
+            kel.keyReleased(e);
+        }
+    }
+    
 }

@@ -9,9 +9,14 @@ import java.awt.event.KeyEvent;
 import javax.media.opengl.GL3;
 
 public class MovimentacaoNave extends Component implements KeyEventListener{
-
+    private static int UP = 0;
+    private static int RIGHT = 1;
+    private static int DOWN = 2;
+    private static int LEFT = 3;
+    private boolean keyStates[];
     public MovimentacaoNave(Objeto objeto) {
         super(objeto);
+        keyStates = new boolean[4];
     }
 
     @Override
@@ -21,22 +26,39 @@ public class MovimentacaoNave extends Component implements KeyEventListener{
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void update() {
         Nave nave = (Nave) objeto;
+        if(keyStates[UP]){
+            //inverter o controle parece ser mais fácil: tecla pra cima *mergulha* a nave
+            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, -2f);
+        }
+        if(keyStates[DOWN]){
+            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, 2f);
+        }
+        if(keyStates[RIGHT]){
+            nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, 2f);
+        }
+        if(keyStates[LEFT]){
+            nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, -2f);
+        }
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+        
         
         switch(e.getKeyCode()){
             case KeyEvent.VK_UP:
-                //inverter o controle parece ser mais fácil: tecla pra cima *mergulha* a nave
-                nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, -2f);
+                keyStates[UP] = true;
                 break;
             case KeyEvent.VK_DOWN:
-                nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, 2f);
+                keyStates[DOWN] = true;
                 break;
             case KeyEvent.VK_LEFT:
-                nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, -2f);
+                keyStates[LEFT] = true;
                 break;
             case KeyEvent.VK_RIGHT:
-                nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, 2f);
+                keyStates[RIGHT] = true;
                 break;
 //            Para Debug
 //            case KeyEvent.VK_W:
@@ -51,6 +73,24 @@ public class MovimentacaoNave extends Component implements KeyEventListener{
 //            case KeyEvent.VK_A:
 //                nave.moveRight(-0.1f);
 //                break;
+        }
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch(e.getKeyCode()){
+            case KeyEvent.VK_UP:
+                keyStates[UP] = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                keyStates[DOWN] = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                keyStates[LEFT] = false;
+                break;
+            case KeyEvent.VK_RIGHT:
+                keyStates[RIGHT] = false;
+                break;
         }
     }
     
