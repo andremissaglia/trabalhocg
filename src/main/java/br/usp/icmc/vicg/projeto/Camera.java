@@ -28,7 +28,7 @@ public class Camera {
         
         //Inicializa o sistema de coordenadas
         projectionMatrix.loadIdentity();
-        projectionMatrix.perspective(45.0f, 1.0f, 0.1f, 10.0f);
+        projectionMatrix.perspective(45.0f, 1.0f, 0.1f, 100.0f);
         projectionMatrix.bind();
         
         viewMatrix.loadIdentity();

@@ -1,11 +1,7 @@
 package br.usp.icmc.vicg.projeto;
 
-import br.usp.icmc.vicg.gl.matrix.Matrix4;
-import br.usp.icmc.vicg.projeto.components.SimpleModelMesh;
-import br.usp.icmc.vicg.gl.model.Cube;
-import br.usp.icmc.vicg.gl.model.Sphere;
-import br.usp.icmc.vicg.gl.model.WiredCube;
 import br.usp.icmc.vicg.gl.util.Shader;
+import br.usp.icmc.vicg.projeto.components.Bullets;
 import br.usp.icmc.vicg.projeto.components.CameraFollow;
 import br.usp.icmc.vicg.projeto.components.Mesh;
 import br.usp.icmc.vicg.projeto.components.MovimentacaoNave;
@@ -16,8 +12,10 @@ public class Nave extends Objeto{
     public Vector3 direcao;
     public Vector3 direita;
     public Nave() {
+        super();
         addComponent(new Mesh(this, "./data/f-16.obj"));
         addComponent(new MovimentacaoNave(this));
+        addComponent(new Bullets(this));
         addChild(new CameraObj());
         direcao = new Vector3(0,0,1);
         direita = new Vector3(-1,0,0);
@@ -26,8 +24,6 @@ public class Nave extends Objeto{
     @Override
     public void init(GL3 gl, Shader shader) {
         super.init(gl, shader);
-        //rotate(1, 0, 0, 180);
-        //rotate(0, 0, 1, 180);
     }
     
     @Override
@@ -38,15 +34,11 @@ public class Nave extends Objeto{
     }
     public void moveFront(float vel){
         Vector3 velocidade = direcao.multiply(vel);
-        tx +=velocidade.x;
-        ty +=velocidade.y;
-        tz +=velocidade.z;     
+        this.position.add(velocidade);
     }
     public void moveRight(float vel){
         Vector3 velocidade = direita.multiply(vel);
-        tx +=velocidade.x;
-        ty +=velocidade.y;
-        tz +=velocidade.z;     
+        this.position.add(velocidade);
     }
 
     @Override
@@ -57,7 +49,7 @@ public class Nave extends Objeto{
         this.direita = Quaternion.rotate(new Vector3(-1, 0, 0), rotation);
         this.direita.normalize();
     }
-    
+        
     private class CameraObj extends Objeto{
 
         public CameraObj() {
@@ -69,8 +61,8 @@ public class Nave extends Objeto{
             super.init(gl, shader);
             rotate(0, 1, 0, 180);
             rotate(1, 0, 0, 5);
-            this.tz=-2;
-            this.ty=0.15f;
+            this.position.z=-2;
+            this.position.y=0.15f;
         }
         
         

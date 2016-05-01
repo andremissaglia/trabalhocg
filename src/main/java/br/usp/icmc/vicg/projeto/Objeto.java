@@ -2,24 +2,17 @@ package br.usp.icmc.vicg.projeto;
 
 import br.usp.icmc.vicg.projeto.components.Component;
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
-import br.usp.icmc.vicg.gl.model.SimpleModel;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.gl.util.ShaderFactory;
 import java.util.ArrayList;
 import javax.media.opengl.GL3;
 
 public class Objeto {
-    protected float tx;
-    protected float ty;
-    protected float tz;
-    
-    protected float sx;
-    protected float sy;
-    protected float sz;
+    public Vector3 position;
+    public Vector3 scale;
     
     protected Quaternion rotation;
     
-    private ArrayList<Component> components;
+    private final ArrayList<Component> components;
     protected ArrayList<Objeto> filhos;
     
     private Objeto father;
@@ -27,14 +20,8 @@ public class Objeto {
     public Objeto() {
         this.filhos = new ArrayList<>();
         this.components = new ArrayList<>();
-        
-        this.tx = 0;
-        this.ty = 0;
-        this.tz = 0;
-        
-        this.sx = 1;
-        this.sy = 1;
-        this.sz = 1;
+        this.position = new Vector3(0, 0, 0);
+        this.scale = new Vector3(1, 1, 1);
     }
     
     public void init(GL3 gl, Shader shader){
@@ -51,6 +38,12 @@ public class Objeto {
         filhos.add(obj);
         obj.father = this;
     }
+    public void removeChild(Objeto obj){
+        filhos.remove(obj);
+    }
+    public Objeto getFather(){
+        return father;
+    }
     public void addComponent(Component c){
         components.add(c);
     }
@@ -58,14 +51,17 @@ public class Objeto {
         for(Component c : components){
             c.update();
         }
-        for(Objeto filho : filhos){
+        //precisamos clonar o vetor de filhos antes de percorrer porque o 
+        //array pode ser modificado no meio do caminho.
+        ArrayList<Objeto> filhos2 = new ArrayList<>(filhos); 
+        for(Objeto filho : filhos2){
             filho.update();
         }
     }
     public void draw(GL3 gl, Matrix4 transform){
         Matrix4 objTransform = new Matrix4(transform);
-        objTransform.translate(tx, ty, tz);
-        objTransform.scale(sx, sy, sz);
+        objTransform.translate(position.x, position.y, position.z);
+        objTransform.scale(scale.x, scale.y, scale.z);
         objTransform.multiply(this.rotation.getMatrix());
         for(Component c : components){
             c.draw(gl, objTransform);
@@ -79,5 +75,4 @@ public class Objeto {
         Quaternion r = Quaternion.getRotation(x, y, z, (float) Math.toRadians(theta));
         this.rotation = r.multiply(this.rotation);
     }
-//    public void 
 }

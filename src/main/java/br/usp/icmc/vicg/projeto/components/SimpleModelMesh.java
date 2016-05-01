@@ -3,19 +3,21 @@ package br.usp.icmc.vicg.projeto.components;
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 import br.usp.icmc.vicg.gl.model.SimpleModel;
 import br.usp.icmc.vicg.gl.util.Shader;
+import br.usp.icmc.vicg.projeto.MeshFactory;
 import br.usp.icmc.vicg.projeto.Objeto;
 import javax.media.opengl.GL3;
 
 public class SimpleModelMesh extends Component{
+    private String modelName;
     private SimpleModel model;
-    public SimpleModelMesh(Objeto objeto, SimpleModel model) {
+    public SimpleModelMesh(Objeto objeto, String modelName) {
         super(objeto);
-        this.model = model;
+        this.modelName = modelName;
     }
 
     @Override
     public void init(GL3 gl, Shader shader) {
-        model.init(gl, shader);
+        this.model = MeshFactory.getInstance().getSimpleModel(modelName);
     }
     
     @Override
