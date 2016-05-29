@@ -5,7 +5,7 @@ import br.usp.icmc.vicg.projeto.Bullet;
 import br.usp.icmc.vicg.projeto.KeyEventListener;
 import br.usp.icmc.vicg.projeto.Nave;
 import br.usp.icmc.vicg.projeto.Objeto;
-import br.usp.icmc.vicg.projeto.Scene;
+import br.usp.icmc.vicg.projeto.GameCore;
 import java.awt.event.KeyEvent;
 import javax.media.opengl.GL3;
 
@@ -19,7 +19,7 @@ public class Bullets extends Component implements KeyEventListener{
     @Override
     public void init(GL3 gl, Shader shader) {
         super.init(gl, shader);
-        Scene.getScene().getInput().addKeyboardListener(this);
+        GameCore.getScene().getInput().addKeyboardListener(this);
         this.gl = gl;
         this.shader = shader;
     }

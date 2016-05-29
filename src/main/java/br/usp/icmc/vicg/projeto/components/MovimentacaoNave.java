@@ -4,7 +4,7 @@ import br.usp.icmc.vicg.gl.util.Shader;
 import br.usp.icmc.vicg.projeto.InputManager;
 import br.usp.icmc.vicg.projeto.Nave;
 import br.usp.icmc.vicg.projeto.Objeto;
-import br.usp.icmc.vicg.projeto.Scene;
+import br.usp.icmc.vicg.projeto.GameCore;
 import java.awt.event.KeyEvent;
 import javax.media.opengl.GL3;
 
@@ -21,7 +21,7 @@ public class MovimentacaoNave extends Component {
     @Override
     public void update() {
         Nave nave = (Nave) objeto;
-        InputManager input = Scene.getScene().getInput();
+        InputManager input = GameCore.getScene().getInput();
         if(input.isPressed(KeyEvent.VK_UP)){
             //inverter o controle parece ser mais fácil: tecla pra cima *mergulha* a nave
             nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, -2f);

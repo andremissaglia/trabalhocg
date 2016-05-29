@@ -10,7 +10,7 @@ public class Objeto {
     public Vector3 position;
     public Vector3 scale;
     
-    protected Quaternion rotation;
+    public Quaternion rotation;
     
     private final ArrayList<Component> components;
     protected ArrayList<Objeto> filhos;
@@ -34,17 +34,17 @@ public class Objeto {
             c.init(gl, shader);
         }
     }
-    public void addChild(Objeto obj){
+    public final void addChild(Objeto obj){
         filhos.add(obj);
         obj.father = this;
     }
-    public void removeChild(Objeto obj){
+    public final void removeChild(Objeto obj){
         filhos.remove(obj);
     }
     public Objeto getFather(){
         return father;
     }
-    public void addComponent(Component c){
+    public final void addComponent(Component c){
         components.add(c);
     }
     public void update(){

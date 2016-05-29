@@ -21,7 +21,7 @@ public class Main {
         GLCanvas canvas = new GLCanvas(cap);
         
         //Add listener
-        Scene scene = new Scene();
+        GameCore scene = new GameCore();
         canvas.addGLEventListener(scene);
         
         JFrame frame = new JFrame();
