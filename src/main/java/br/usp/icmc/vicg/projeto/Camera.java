@@ -8,10 +8,12 @@ public class Camera extends Objeto {
     private final Matrix4 modelMatrix;
     private final Matrix4 projectionMatrix;
     private final Matrix4 viewMatrix;
+    private final FrustumCulling frustumCulling;
     public Camera() {
         modelMatrix = new Matrix4();
         projectionMatrix = new Matrix4();
         viewMatrix = new Matrix4();
+        frustumCulling = new FrustumCulling();
     }
     
     @Override
@@ -24,15 +26,20 @@ public class Camera extends Objeto {
         
         viewMatrix.loadIdentity();
         viewMatrix.bind();
+        frustumCulling.extractFrustum(projectionMatrix, viewMatrix);
         super.init(gl, shader);
     }
     public void draw(GL3 gl){
         viewMatrix.bind();
-        super.draw(gl, modelMatrix);
+        super.draw(gl, modelMatrix, this);
     }
     public void setViewMatrix(Matrix4 myViewMatrix){
         viewMatrix.loadIdentity();
         viewMatrix.multiply(myViewMatrix);
+        frustumCulling.extractFrustum(projectionMatrix, viewMatrix);
+    }
+    public boolean isVisible(Vector3 position, float radius){
+        return frustumCulling.isSphereInFrustum(position.x, position.y, position.z, radius);
     }
     public void reshape(int width, int height){
         float aspect = (float)width/(float)height;

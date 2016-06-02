@@ -58,16 +58,18 @@ public class Objeto {
             filho.update();
         }
     }
-    public void draw(GL3 gl, Matrix4 transform){
+    public void draw(GL3 gl, Matrix4 transform, Camera camera){
         Matrix4 objTransform = new Matrix4(transform);
         objTransform.translate(position.x, position.y, position.z);
         objTransform.scale(scale.x, scale.y, scale.z);
         objTransform.multiply(this.rotation.getMatrix());
-        for(Component c : components){
-            c.draw(gl, objTransform);
+        if(camera.isVisible(transform.multiply(position), 1)){
+            for(Component c : components){
+                c.draw(gl, objTransform);
+            }
         }
         for(Objeto filho : filhos){
-            filho.draw(gl, objTransform);
+            filho.draw(gl, objTransform, camera);
         }
         
     }

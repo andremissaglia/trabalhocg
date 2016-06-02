@@ -5,6 +5,7 @@
  */
 package br.usp.icmc.vicg.gl.matrix;
 
+import br.usp.icmc.vicg.projeto.Vector3;
 import java.util.Stack;
 import javax.media.opengl.GL3;
 
@@ -280,6 +281,13 @@ public class Matrix4 {
     vector[1] /= norm;
     vector[2] /= norm;
   }
+  public Vector3 multiply(Vector3 vec){
+      return new Vector3(
+              this.matrix[0]*vec.x + this.matrix[4]*vec.y+this.matrix[8]*vec.z+this.matrix[12], 
+              this.matrix[1]*vec.x + this.matrix[5]*vec.y+this.matrix[9]*vec.z+this.matrix[13], 
+              this.matrix[2]*vec.x + this.matrix[6]*vec.y+this.matrix[10]*vec.z+this.matrix[14] 
+      );
+  }
   public void multiply(Matrix4 mat){
       this.multiply(mat.matrix);
   }
@@ -324,5 +332,7 @@ public class Matrix4 {
     this.matrix[14] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
     this.matrix[15] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
   }
-
+  public float[] getVals(){
+      return this.matrix;
+  }
 }
