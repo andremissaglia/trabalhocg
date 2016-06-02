@@ -63,8 +63,8 @@ public class Example08 implements GLEventListener {
 
         // Inicializa o sistema de coordenadas
         projectionMatrix.loadIdentity();
-        projectionMatrix.perspective(45.0f, 1.0f, 0.1f, 10.0f);
-        projectionMatrix.bind();
+        //projectionMatrix.perspective(45.0f, 1.0f, 0.1f, 10.0f);
+        //projectionMatrix.bind();
         
         viewMatrix.loadIdentity();
         viewMatrix.lookAt(4.0f, 1.0f, 2.0f, 
@@ -96,6 +96,11 @@ public class Example08 implements GLEventListener {
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+        float aspect = (float)width/(float)height;
+        System.out.println("W: " + width + " H: " + height + " A: " + aspect);
+        projectionMatrix.loadIdentity();
+        projectionMatrix.perspective(45.0f, aspect, 0.1f, 10.0f);
+        projectionMatrix.bind();
     }
 
     @Override

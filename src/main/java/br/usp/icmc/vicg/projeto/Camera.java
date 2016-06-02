@@ -22,11 +22,6 @@ public class Camera extends Objeto {
         
         modelMatrix.loadIdentity();
         
-        //Inicializa o sistema de coordenadas
-        projectionMatrix.loadIdentity();
-        projectionMatrix.perspective(45.0f, 1.0f, 0.1f, 100.0f);
-        projectionMatrix.bind();
-        
         viewMatrix.loadIdentity();
         viewMatrix.bind();
         super.init(gl, shader);
@@ -38,5 +33,11 @@ public class Camera extends Objeto {
     public void setViewMatrix(Matrix4 myViewMatrix){
         viewMatrix.loadIdentity();
         viewMatrix.multiply(myViewMatrix);
+    }
+    public void reshape(int width, int height){
+        float aspect = (float)width/(float)height;
+        projectionMatrix.loadIdentity();
+        projectionMatrix.perspective(45.0f, aspect, 0.1f, 10.0f);
+        projectionMatrix.bind();
     }
 }

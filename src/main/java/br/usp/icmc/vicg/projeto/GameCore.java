@@ -100,6 +100,7 @@ public class GameCore extends KeyAdapter implements GLEventListener{
 
     @Override
     public void reshape(GLAutoDrawable glad, int i, int i1, int i2, int i3) {
+        camera.reshape(i2, i3);
     }
     
     @Override
