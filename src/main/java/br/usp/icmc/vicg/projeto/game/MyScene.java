@@ -26,16 +26,22 @@ public class MyScene extends Scene{
         camera.addChild(nave);
         Objeto sistemaSolar = new Objeto();
         camera.addChild(sistemaSolar);
-        Planeta sol = new Planeta("./data/sun/sun.obj", 50, 0, 0, 0);
+        Planeta sol = new Planeta("./data/sun/sun.obj", 150, 0, 0, 0);
         sistemaSolar.addChild(sol);
-        Orbita o = new Orbita(0.5f);
-        sistemaSolar.addChild(o);
-        Planeta p1 = new Planeta("./data/terra/terra.obj", 5, 150, 0.5f, 0);
-        Planeta p2 = new Planeta("./data/terra/terra.obj", 5, 300, 0.05f, 120);        
-        Planeta p3 = new Planeta("./data/terra/terra.obj", 5, 450, 0.01f, 240);
-        o.addChild(p1);
-        o.addChild(p2);
-        o.addChild(p3);
+        Orbita o1 = new Orbita(0.4f);
+        Orbita o2 = new Orbita(0.2f);
+        Orbita o3 = new Orbita(0.1f);
+        sistemaSolar.addChild(o1);
+        sistemaSolar.addChild(o2);
+        sistemaSolar.addChild(o3);
+        Planeta p1 = new Planeta("./data/mercurio/mercurio.obj", 15, 250, 2f, 0);
+        Planeta p2 = new Planeta("./data/venus/venus.obj", 20, 350, 2f, 120);        
+        Planeta p3 = new Planeta("./data/terra/terra.obj", 25, 650, 2f, 240);
+        o1.addChild(p1);
+        o2.addChild(p2);
+        o3.addChild(p3);
+        Cinturao c = new Cinturao(0.1f, 700, 800, 1000);
+        sistemaSolar.addChild(c);
     }
     
 }

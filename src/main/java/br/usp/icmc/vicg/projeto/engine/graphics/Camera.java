@@ -47,7 +47,7 @@ public class Camera extends Objeto {
     public void reshape(int width, int height){
         float aspect = (float)width/(float)height;
         projectionMatrix.loadIdentity();
-        projectionMatrix.perspective(60.0f, aspect, 0.1f, 1000.0f);
+        projectionMatrix.perspective(60.0f, aspect, 0.1f, 3000.0f);
         projectionMatrix.bind();
     }
 }

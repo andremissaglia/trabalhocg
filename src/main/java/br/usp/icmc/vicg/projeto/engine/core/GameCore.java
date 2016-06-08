@@ -2,6 +2,7 @@ package br.usp.icmc.vicg.projeto.engine.core;
 
 import br.usp.icmc.vicg.projeto.engine.input.InputManager;
 import br.usp.icmc.vicg.projeto.engine.graphics.InterfaceManager;
+import java.util.Random;
 
 public class GameCore {
 
@@ -11,7 +12,7 @@ public class GameCore {
     private final EventManager events;
     private Scene scene;
     private final int UPDATE_RATE = 30;
-
+    public Random random;
     public static GameCore getGame() {
         return coreObj;
     }
@@ -20,6 +21,7 @@ public class GameCore {
         this.input = new InputManager();
         this.ui = new InterfaceManager();
         this.events = new EventManager();
+        this.random = new Random();
         coreObj = this;
 
     }

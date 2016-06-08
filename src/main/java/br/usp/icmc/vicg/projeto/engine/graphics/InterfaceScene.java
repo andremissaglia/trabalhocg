@@ -27,7 +27,7 @@ public class InterfaceScene implements GLEventListener{
     public void init(GLAutoDrawable glad) {
         try {
             GL3 gl = glad.getGL().getGL3();
-            gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            gl.glClearColor(0f, 0f, 0f, 1.0f);
             gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL3.GL_DEPTH_BUFFER_BIT);
             gl.glEnable(GL.GL_DEPTH_TEST);
             gl.glEnable(GL.GL_CULL_FACE);

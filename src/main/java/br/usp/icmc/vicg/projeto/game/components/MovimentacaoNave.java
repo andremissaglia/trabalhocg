@@ -36,5 +36,11 @@ public class MovimentacaoNave extends Component {
         if(input.isPressed(KeyEvent.VK_LEFT)){
             nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, -5f);
         }
+        if(input.isPressed(KeyEvent.VK_Z)){
+            nave.accelerate(0.1f);
+        }
+        if(input.isPressed(KeyEvent.VK_X)){
+            nave.accelerate(-0.1f);
+        }
     }
 }
