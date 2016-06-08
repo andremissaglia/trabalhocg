@@ -31,9 +31,9 @@ public class MeshFactory {
         simpleModels.put("Sphere", new Sphere());
         meshes.put("./data/xwing/xwing.obj", new JWavefrontObject(new File("./data/xwing/xwing.obj")));
         meshes.put("./data/apples.obj", new JWavefrontObject(new File("./data/apples.obj")));
-        meshes.put("./data/meteor/meteor.obj", new JWavefrontObject(new File("./data/meteor/meteor.obj")));
+        meshes.put("./data/sun/sun.obj", new JWavefrontObject(new File("./data/sun/sun.obj")));
         meshes.put("./data/terra/terra.obj", new JWavefrontObject(new File("./data/terra/terra.obj")));
-//        meshes.put("./data/meteorHuge/meteorHuge.obj", new JWavefrontObject(new File("./data/meteorHuge/meteorHuge.obj")));
+        meshes.put("./data/meteorHuge/meteorHuge.obj", new JWavefrontObject(new File("./data/meteorHuge/meteorHuge.obj")));
         for(Map.Entry<String, SimpleModel> entry : simpleModels.entrySet()){
             entry.getValue().init(gl, shader);
         }

@@ -1,7 +1,9 @@
 package br.usp.icmc.vicg.projeto.game;
 
 import br.usp.icmc.vicg.gl.core.Light;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import br.usp.icmc.vicg.projeto.engine.core.Scene;
+import br.usp.icmc.vicg.projeto.engine.graphics.Camera;
 import br.usp.icmc.vicg.projeto.game.components.CameraFollow;
 
 public class MyScene extends Scene{
@@ -18,16 +20,22 @@ public class MyScene extends Scene{
 
     @Override
     public void buildScene() {
+        Camera camera = getCamera();
         Nave nave = new Nave();
-        nave.addComponent(new CameraFollow(nave, getCamera(), getLight()));
-        getCamera().addChild(nave);
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                for(int k = 0; k < 4; k++){
-                    getCamera().addChild(new Bola(i, j, k));
-                }
-            }
-        }
+        nave.addComponent(new CameraFollow(nave, camera, getLight()));
+        camera.addChild(nave);
+        Objeto sistemaSolar = new Objeto();
+        camera.addChild(sistemaSolar);
+        Planeta sol = new Planeta("./data/sun/sun.obj", 50, 0, 0, 0);
+        sistemaSolar.addChild(sol);
+        Orbita o = new Orbita(0.5f);
+        sistemaSolar.addChild(o);
+        Planeta p1 = new Planeta("./data/terra/terra.obj", 5, 150, 1f, 0);
+        Planeta p2 = new Planeta("./data/terra/terra.obj", 5, 300, 0.1f, 120);        
+        Planeta p3 = new Planeta("./data/terra/terra.obj", 5, 450, 0.05f, 240);
+        o.addChild(p1);
+        o.addChild(p2);
+        o.addChild(p3);
     }
     
 }

@@ -3,9 +3,9 @@ package br.usp.icmc.vicg.projeto.game;
 import br.usp.icmc.vicg.projeto.engine.math.Quaternion;
 import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import br.usp.icmc.vicg.gl.util.Shader;
+import br.usp.icmc.vicg.projeto.engine.core.GameCore;
 import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import br.usp.icmc.vicg.projeto.game.components.Bullets;
-import br.usp.icmc.vicg.projeto.game.components.CameraFollow;
 import br.usp.icmc.vicg.projeto.game.components.Mesh;
 import br.usp.icmc.vicg.projeto.game.components.MovimentacaoNave;
 import javax.media.opengl.GL3;
@@ -19,6 +19,7 @@ public class Nave extends Objeto{
         addComponent(new Mesh(this, "./data/xwing/xwing.obj"));
         addComponent(new MovimentacaoNave(this));
         addComponent(new Bullets(this));
+        this.position = new Vector3(0, 0,-1000);
         direcao = new Vector3(0,0,1);
         direita = new Vector3(-1,0,0);
     }
@@ -32,12 +33,13 @@ public class Nave extends Objeto{
     @Override
     public void update() {
         super.update();
-        moveFront(0.01f);
+        moveFront(5f);
         
     }
     public void moveFront(float vel){
         Vector3 velocidade = direcao.multiply(vel);
         this.position.add(velocidade);
+        GameCore.getGame().getEventManager().emit("moved");
     }
     public void moveRight(float vel){
         Vector3 velocidade = direita.multiply(vel);

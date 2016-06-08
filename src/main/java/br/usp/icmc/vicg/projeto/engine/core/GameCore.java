@@ -8,8 +8,8 @@ public class GameCore {
     private static GameCore coreObj;
     private final InputManager input;
     private final InterfaceManager ui;
+    private final EventManager events;
     private Scene scene;
-    private final int FPS = 30;
     private final int UPDATE_RATE = 30;
 
     public static GameCore getGame() {
@@ -19,12 +19,16 @@ public class GameCore {
     public GameCore() {
         this.input = new InputManager();
         this.ui = new InterfaceManager();
+        this.events = new EventManager();
         coreObj = this;
 
     }
 
     public InputManager getInput() {
         return input;
+    }
+    public EventManager getEventManager(){
+        return events;
     }
 
     public void pushScene(Scene scene) {
