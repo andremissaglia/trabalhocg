@@ -16,7 +16,7 @@ public class InterfaceScene implements GLEventListener{
     private final Shader shader;
     private Scene scene;
     public InterfaceScene() {
-        shader = ShaderFactory.getInstance(ShaderFactory.ShaderType.MODEL_PROJECTION_MATRIX_SHADER);
+        shader = ShaderFactory.getInstance(ShaderFactory.ShaderType.COMPLETE_SHADER);
     }
 
     public void setScene(Scene scene) {
@@ -39,7 +39,8 @@ public class InterfaceScene implements GLEventListener{
             
             MeshFactory.getInstance().init(gl, shader);
             scene.getCamera().init(gl, shader);
-//            scene.getLight().init(gl, shader);
+            scene.getLight().init(gl, shader);
+            GameCore.getGame().runGameLoop();
         } catch (IOException ex) {
             Logger.getLogger(GameCore.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +54,7 @@ public class InterfaceScene implements GLEventListener{
     public void display(GLAutoDrawable glad) {
         GL3 gl = glad.getGL().getGL3();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL3.GL_DEPTH_BUFFER_BIT);
-//        scene.getLight().bind();
+        scene.getLight().bind();
         scene.getCamera().draw(gl);
     }
 

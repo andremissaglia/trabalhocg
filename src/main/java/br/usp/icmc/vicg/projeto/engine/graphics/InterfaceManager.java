@@ -40,6 +40,6 @@ public class InterfaceManager{
         frame.setVisible(true);
     }
     public void draw(){
-        iScene.display(canvas);
+        canvas.display();
     }
 }

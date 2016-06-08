@@ -8,6 +8,6 @@ public class Main {
         GameCore game = new GameCore();
         MyScene scene = new MyScene();
         game.pushScene(scene);
-        game.run();
+        game.start();
     }
 }

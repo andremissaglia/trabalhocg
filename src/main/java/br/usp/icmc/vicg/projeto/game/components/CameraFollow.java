@@ -27,12 +27,12 @@ public class CameraFollow extends Component{
 
     @Override
     public void update() {
-//        mat.loadIdentity();
-//        mat.translate(objeto.position.x, objeto.position.y, objeto.position.z);
-//        mat.multiply(objeto.rotation.getMatrix());
-//        mat.translate(position.x, position.y, position.z);
-//        mat.invert();
-//        camera.setViewMatrix(mat);
+        mat.loadIdentity();
+        mat.translate(objeto.position.x, objeto.position.y, objeto.position.z);
+        mat.multiply(objeto.rotation.getMatrix());
+        mat.translate(position.x, position.y, position.z);
+        mat.invert();
+        camera.setViewMatrix(mat);
     }
     
 }

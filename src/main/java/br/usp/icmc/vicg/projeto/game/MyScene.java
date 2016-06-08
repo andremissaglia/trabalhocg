@@ -6,6 +6,7 @@ import br.usp.icmc.vicg.projeto.engine.core.Scene;
 public class MyScene extends Scene{
 
     public MyScene() {
+        super();
         Light light = new Light();
         light.setPosition(new float[]{10, 10, 50, 1.0f});
         light.setAmbientColor(new float[]{0.1f, 0.1f, 0.1f, 1.0f});
@@ -17,6 +18,13 @@ public class MyScene extends Scene{
     @Override
     public void buildScene() {
         getCamera().addChild(new Nave());
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                for(int k = 0; k < 4; k++){
+                    getCamera().addChild(new Bola(i, j, k));
+                }
+            }
+        }
     }
     
 }

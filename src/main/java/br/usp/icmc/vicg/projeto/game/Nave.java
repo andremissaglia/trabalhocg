@@ -27,7 +27,7 @@ public class Nave extends Objeto{
     @Override
     public void init(GL3 gl, Shader shader) {
         super.init(gl, shader);
-//        rotate(0, 1, 0, 180);
+        rotate(0, 1, 0, 180);
     }
     
     @Override
