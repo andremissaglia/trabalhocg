@@ -25,10 +25,10 @@ public class MovimentacaoNave extends Component {
         InputManager input = GameCore.getGame().getInput();
         if(input.isPressed(KeyEvent.VK_UP)){
             //inverter o controle parece ser mais fácil: tecla pra cima *mergulha* a nave
-            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, -3f);
+            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, -2f);
         }
         if(input.isPressed(KeyEvent.VK_DOWN)){
-            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, 3f);
+            nave.rotate(nave.direita.x, nave.direita.y, nave.direita.z, 2f);
         }
         if(input.isPressed(KeyEvent.VK_RIGHT)){
             nave.rotate(nave.direcao.x, nave.direcao.y, nave.direcao.z, 5f);

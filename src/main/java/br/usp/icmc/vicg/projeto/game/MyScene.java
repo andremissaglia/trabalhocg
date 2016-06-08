@@ -30,9 +30,9 @@ public class MyScene extends Scene{
         sistemaSolar.addChild(sol);
         Orbita o = new Orbita(0.5f);
         sistemaSolar.addChild(o);
-        Planeta p1 = new Planeta("./data/terra/terra.obj", 5, 150, 1f, 0);
-        Planeta p2 = new Planeta("./data/terra/terra.obj", 5, 300, 0.1f, 120);        
-        Planeta p3 = new Planeta("./data/terra/terra.obj", 5, 450, 0.05f, 240);
+        Planeta p1 = new Planeta("./data/terra/terra.obj", 5, 150, 0.5f, 0);
+        Planeta p2 = new Planeta("./data/terra/terra.obj", 5, 300, 0.05f, 120);        
+        Planeta p3 = new Planeta("./data/terra/terra.obj", 5, 450, 0.01f, 240);
         o.addChild(p1);
         o.addChild(p2);
         o.addChild(p3);
