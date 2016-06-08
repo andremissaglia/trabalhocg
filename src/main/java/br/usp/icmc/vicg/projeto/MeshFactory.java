@@ -4,6 +4,7 @@ import br.usp.icmc.vicg.gl.jwavefront.JWavefrontObject;
 import br.usp.icmc.vicg.gl.model.SimpleModel;
 import br.usp.icmc.vicg.gl.model.Sphere;
 import br.usp.icmc.vicg.gl.util.Shader;
+import br.usp.icmc.vicg.projeto.exceptions.MeshNotLoadedException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -40,9 +41,17 @@ public class MeshFactory {
         }
     }
     public SimpleModel getSimpleModel(String name){
-        return simpleModels.get(name);
+        SimpleModel obj = simpleModels.get(name);
+        if(obj == null){
+            throw new MeshNotLoadedException(name);
+        }
+        return obj;
     }
     public JWavefrontObject getMesh(String path){
-        return meshes.get(path);
+        JWavefrontObject obj = meshes.get(path);
+        if(obj == null){
+            throw new MeshNotLoadedException(path);
+        }
+        return obj;
     }
 }
