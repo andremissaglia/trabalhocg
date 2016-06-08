@@ -18,12 +18,14 @@ public class Objeto {
     protected ArrayList<Objeto> filhos;
     
     private Objeto father;
+    protected float boundingSphere;
 
     public Objeto() {
         this.filhos = new ArrayList<>();
         this.components = new ArrayList<>();
         this.position = new Vector3(0, 0, 0);
         this.scale = new Vector3(1, 1, 1);
+        boundingSphere = 1;
     }
     
     public void init(GL3 gl, Shader shader){
@@ -65,7 +67,7 @@ public class Objeto {
         objTransform.translate(position.x, position.y, position.z);
         objTransform.scale(scale.x, scale.y, scale.z);
         objTransform.multiply(this.rotation.getMatrix());
-        if(camera.isVisible(transform.multiply(position), 1)){
+        if(camera.isVisible(transform.multiply(position), boundingSphere)){
             for(Component c : components){
                 c.draw(gl, objTransform);
             }

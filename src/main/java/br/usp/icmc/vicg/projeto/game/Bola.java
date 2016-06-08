@@ -11,7 +11,9 @@ public class Bola extends Objeto{
 
     public Bola(float x, float y, float z) {
         super();
-        addComponent(new Mesh(this, "./data/meteor/meteor.obj"));
+//        addComponent(new Mesh(this, "./data/meteor/meteor.obj"));
+        addComponent(new Mesh(this, "./data/earth/earth.obj"));
+//        addComponent(new Mesh(this, "./data/meteorHuge/meteorHuge.obj"));
         this.scale = new Vector3(0.1f, 0.1f, 0.1f);
         this.position = new Vector3(x, y, z);
     }

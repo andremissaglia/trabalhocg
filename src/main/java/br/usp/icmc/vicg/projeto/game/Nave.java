@@ -18,7 +18,6 @@ public class Nave extends Objeto{
         super();
         addComponent(new Mesh(this, "./data/xwing/xwing.obj"));
         addComponent(new MovimentacaoNave(this));
-        addComponent(new CameraFollow(this));
         addComponent(new Bullets(this));
         direcao = new Vector3(0,0,1);
         direita = new Vector3(-1,0,0);
