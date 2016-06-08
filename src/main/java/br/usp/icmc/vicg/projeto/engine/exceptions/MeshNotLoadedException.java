@@ -1,4 +1,4 @@
-package br.usp.icmc.vicg.projeto.exceptions;
+package br.usp.icmc.vicg.projeto.engine.exceptions;
 
 public class MeshNotLoadedException extends RuntimeException{
     String path;

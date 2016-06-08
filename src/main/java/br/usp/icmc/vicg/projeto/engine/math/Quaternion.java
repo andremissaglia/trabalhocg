@@ -1,4 +1,4 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.engine.math;
 
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 

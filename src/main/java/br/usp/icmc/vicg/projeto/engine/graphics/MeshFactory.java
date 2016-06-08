@@ -1,10 +1,10 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.engine.graphics;
 
 import br.usp.icmc.vicg.gl.jwavefront.JWavefrontObject;
 import br.usp.icmc.vicg.gl.model.SimpleModel;
 import br.usp.icmc.vicg.gl.model.Sphere;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.projeto.exceptions.MeshNotLoadedException;
+import br.usp.icmc.vicg.projeto.engine.exceptions.MeshNotLoadedException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;

@@ -5,7 +5,7 @@
  */
 package br.usp.icmc.vicg.gl.matrix;
 
-import br.usp.icmc.vicg.projeto.Vector3;
+import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import java.util.Stack;
 import javax.media.opengl.GL3;
 

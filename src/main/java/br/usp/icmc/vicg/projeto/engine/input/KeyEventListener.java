@@ -1,4 +1,4 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.engine.input;
 
 import java.awt.event.KeyEvent;
 

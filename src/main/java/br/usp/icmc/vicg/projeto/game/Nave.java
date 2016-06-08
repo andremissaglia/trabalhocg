@@ -1,10 +1,13 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.game;
 
+import br.usp.icmc.vicg.projeto.engine.math.Quaternion;
+import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.projeto.components.Bullets;
-import br.usp.icmc.vicg.projeto.components.CameraFollow;
-import br.usp.icmc.vicg.projeto.components.Mesh;
-import br.usp.icmc.vicg.projeto.components.MovimentacaoNave;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
+import br.usp.icmc.vicg.projeto.game.components.Bullets;
+import br.usp.icmc.vicg.projeto.game.components.CameraFollow;
+import br.usp.icmc.vicg.projeto.game.components.Mesh;
+import br.usp.icmc.vicg.projeto.game.components.MovimentacaoNave;
 import javax.media.opengl.GL3;
 
 
@@ -24,7 +27,7 @@ public class Nave extends Objeto{
     @Override
     public void init(GL3 gl, Shader shader) {
         super.init(gl, shader);
-        rotate(0, 1, 0, 180);
+//        rotate(0, 1, 0, 180);
     }
     
     @Override

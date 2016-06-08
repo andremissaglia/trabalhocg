@@ -1,4 +1,4 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.engine.math;
 
 public class Vector3 {
     public float x;

@@ -1,7 +1,9 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.game;
 
+import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import br.usp.icmc.vicg.gl.model.Sphere;
-import br.usp.icmc.vicg.projeto.components.SimpleModelMesh;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
+import br.usp.icmc.vicg.projeto.game.components.SimpleModelMesh;
 
 public class Bullet extends Objeto{
     private final Vector3 velocidade;

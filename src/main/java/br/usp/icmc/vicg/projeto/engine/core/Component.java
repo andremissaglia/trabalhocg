@@ -1,8 +1,8 @@
-package br.usp.icmc.vicg.projeto.components;
+package br.usp.icmc.vicg.projeto.engine.core;
 
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.projeto.Objeto;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import javax.media.opengl.GL3;
 
 public abstract class Component {

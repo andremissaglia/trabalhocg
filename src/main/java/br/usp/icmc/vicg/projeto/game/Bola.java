@@ -1,7 +1,9 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.game;
 
+import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.projeto.components.Mesh;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
+import br.usp.icmc.vicg.projeto.game.components.Mesh;
 import javax.media.opengl.GL3;
 
 

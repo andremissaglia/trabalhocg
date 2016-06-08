@@ -1,6 +1,8 @@
-package br.usp.icmc.vicg.projeto;
+package br.usp.icmc.vicg.projeto.engine.core;
 
-import br.usp.icmc.vicg.projeto.components.Component;
+import br.usp.icmc.vicg.projeto.engine.graphics.Camera;
+import br.usp.icmc.vicg.projeto.engine.math.Quaternion;
+import br.usp.icmc.vicg.projeto.engine.math.Vector3;
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 import br.usp.icmc.vicg.gl.util.Shader;
 import java.util.ArrayList;

@@ -1,10 +1,11 @@
-package br.usp.icmc.vicg.projeto.components;
+package br.usp.icmc.vicg.projeto.game.components;
 
+import br.usp.icmc.vicg.projeto.engine.core.Component;
 import br.usp.icmc.vicg.gl.jwavefront.JWavefrontObject;
 import br.usp.icmc.vicg.gl.matrix.Matrix4;
 import br.usp.icmc.vicg.gl.util.Shader;
-import br.usp.icmc.vicg.projeto.MeshFactory;
-import br.usp.icmc.vicg.projeto.Objeto;
+import br.usp.icmc.vicg.projeto.engine.graphics.MeshFactory;
+import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import javax.media.opengl.GL3;
 
 public class Mesh extends Component{
