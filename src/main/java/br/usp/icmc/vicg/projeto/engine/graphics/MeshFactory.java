@@ -37,6 +37,7 @@ public class MeshFactory {
         meshes.put("./data/venus/venus.obj", new JWavefrontObject(new File("./data/venus/venus.obj")));
         meshes.put("./data/terra/terra.obj", new JWavefrontObject(new File("./data/terra/terra.obj")));
         meshes.put("./data/meteorHuge/meteorHuge.obj", new JWavefrontObject(new File("./data/meteorHuge/meteorHuge.obj")));
+        meshes.put("./data/skybox/skybox.obj", new JWavefrontObject(new File("./data/skybox/skybox.obj")));
         for(Map.Entry<String, SimpleModel> entry : simpleModels.entrySet()){
             entry.getValue().init(gl, shader);
         }

@@ -13,6 +13,7 @@ public class Camera extends Objeto {
     private final Matrix4 viewMatrix;
     private final FrustumCulling frustumCulling;
     public Camera() {
+        super();
         modelMatrix = new Matrix4();
         projectionMatrix = new Matrix4();
         viewMatrix = new Matrix4();
@@ -47,7 +48,7 @@ public class Camera extends Objeto {
     public void reshape(int width, int height){
         float aspect = (float)width/(float)height;
         projectionMatrix.loadIdentity();
-        projectionMatrix.perspective(60.0f, aspect, 0.1f, 3000.0f);
+        projectionMatrix.perspective(60.0f, aspect, 0.1f, 20000.0f);
         projectionMatrix.bind();
     }
 }

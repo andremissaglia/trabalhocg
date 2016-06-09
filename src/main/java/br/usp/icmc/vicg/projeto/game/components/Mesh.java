@@ -27,6 +27,4 @@ public class Mesh extends Component{
         model.draw();
     }
     
-    
-    
 }

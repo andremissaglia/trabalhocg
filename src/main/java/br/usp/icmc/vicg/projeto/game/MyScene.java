@@ -5,6 +5,7 @@ import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import br.usp.icmc.vicg.projeto.engine.core.Scene;
 import br.usp.icmc.vicg.projeto.engine.graphics.Camera;
 import br.usp.icmc.vicg.projeto.game.components.CameraFollow;
+import br.usp.icmc.vicg.projeto.game.components.FollowObject;
 
 public class MyScene extends Scene{
 
@@ -20,9 +21,11 @@ public class MyScene extends Scene{
 
     @Override
     public void buildScene() {
+        //criar objs
         Camera camera = getCamera();
+        Skybox skybox = new Skybox();
+        camera.addChild(skybox);
         Nave nave = new Nave();
-        nave.addComponent(new CameraFollow(nave, camera, getLight()));
         camera.addChild(nave);
         Objeto sistemaSolar = new Objeto();
         camera.addChild(sistemaSolar);
@@ -42,6 +45,9 @@ public class MyScene extends Scene{
         o3.addChild(p3);
         Cinturao c = new Cinturao(0.1f, 700, 800, 1000);
         sistemaSolar.addChild(c);
+        //configurar objs
+        nave.addComponent(new CameraFollow(nave, camera, getLight()));
+        skybox.addComponent(new FollowObject(skybox, nave));
     }
     
 }

@@ -25,6 +25,7 @@ public class Objeto {
         this.components = new ArrayList<>();
         this.position = new Vector3(0, 0, 0);
         this.scale = new Vector3(1, 1, 1);
+        this.rotation = Quaternion.getRotation(0, 0, 0, 1);
         boundingSphere = 1;
     }
     
@@ -33,7 +34,6 @@ public class Objeto {
             filho.init(gl, shader);
         }
         
-        this.rotation = Quaternion.getRotation(0, 0, 0, 1);
         for(Component c : components){
             c.init(gl, shader);
         }
