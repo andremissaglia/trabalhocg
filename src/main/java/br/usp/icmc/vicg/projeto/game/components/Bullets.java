@@ -32,7 +32,7 @@ public class Bullets extends Component {
         }
         if(GameCore.getGame().getInput().isPressed(KeyEvent.VK_SPACE)){
             ignores = 0;
-            Bullet b = new Bullet(objeto.position, ((Nave) objeto).direcao));
+            Bullet b = new Bullet(objeto.position, ((Nave) objeto).direcao);
             b.init(gl, shader);
             objeto.getFather().addChild(b);
         }
