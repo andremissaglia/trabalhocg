@@ -335,4 +335,7 @@ public class Matrix4 {
   public float[] getVals(){
       return this.matrix;
   }
+  public Vector3 getTranslate(){
+      return new Vector3(this.matrix[12], this.matrix[13], this.matrix[14]);
+  }
 }

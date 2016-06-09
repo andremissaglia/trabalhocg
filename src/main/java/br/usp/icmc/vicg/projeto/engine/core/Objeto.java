@@ -18,7 +18,7 @@ public class Objeto {
     protected ArrayList<Objeto> filhos;
     
     private Objeto father;
-    protected float boundingSphere;
+    public float boundingSphere;
 
     public Objeto() {
         this.filhos = new ArrayList<>();
@@ -45,6 +45,9 @@ public class Objeto {
     public final void removeChild(Objeto obj){
         filhos.remove(obj);
     }
+    public final ArrayList<Objeto> getChildren(){
+        return filhos;
+    }
     public Objeto getFather(){
         return father;
     }
@@ -63,10 +66,7 @@ public class Objeto {
         }
     }
     public void draw(GL3 gl, Matrix4 transform, Camera camera){
-        Matrix4 objTransform = new Matrix4(transform);
-        objTransform.translate(position.x, position.y, position.z);
-        objTransform.scale(scale.x, scale.y, scale.z);
-        objTransform.multiply(this.rotation.getMatrix());
+        Matrix4 objTransform = transform(transform);
         if(camera.isVisible(transform.multiply(position), boundingSphere)){
             for(Component c : components){
                 c.draw(gl, objTransform);
@@ -80,5 +80,15 @@ public class Objeto {
     public void rotate(float x, float y, float z, float theta){
         Quaternion r = Quaternion.getRotation(x, y, z, (float) Math.toRadians(theta));
         this.rotation = r.multiply(this.rotation);
+    }
+    public void destroy(){
+        father.removeChild(this);
+    }
+    public Matrix4 transform(Matrix4 transform){
+        Matrix4 objTransform = new Matrix4(transform);
+        objTransform.translate(position.x, position.y, position.z);
+        objTransform.scale(scale.x, scale.y, scale.z);
+        objTransform.multiply(this.rotation.getMatrix());
+        return objTransform;
     }
 }

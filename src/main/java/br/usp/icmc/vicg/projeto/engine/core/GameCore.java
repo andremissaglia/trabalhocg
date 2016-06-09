@@ -2,6 +2,7 @@ package br.usp.icmc.vicg.projeto.engine.core;
 
 import br.usp.icmc.vicg.projeto.engine.input.InputManager;
 import br.usp.icmc.vicg.projeto.engine.graphics.InterfaceManager;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameCore {
@@ -13,6 +14,7 @@ public class GameCore {
     private Scene scene;
     private final int UPDATE_RATE = 30;
     public Random random;
+    private ArrayList<Service> services;
     public static GameCore getGame() {
         return coreObj;
     }
@@ -22,6 +24,7 @@ public class GameCore {
         this.ui = new InterfaceManager();
         this.events = new EventManager();
         this.random = new Random();
+        this.services = new ArrayList<>();
         coreObj = this;
 
     }
@@ -32,7 +35,9 @@ public class GameCore {
     public EventManager getEventManager(){
         return events;
     }
-
+    public void addService(Service s){
+        this.services.add(s);
+    }
     public void pushScene(Scene scene) {
         scene.buildScene();
         this.scene = scene;
@@ -67,6 +72,9 @@ public class GameCore {
                 input.processEvents();
                 while (counter >= updateTime) {
                     scene.update();
+                    for(Service s : services){
+                        s.update();
+                    }
                     counter -= updateTime;
                 }
                 ui.draw();

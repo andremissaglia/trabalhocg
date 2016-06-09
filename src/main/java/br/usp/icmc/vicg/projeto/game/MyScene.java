@@ -1,6 +1,7 @@
 package br.usp.icmc.vicg.projeto.game;
 
 import br.usp.icmc.vicg.gl.core.Light;
+import br.usp.icmc.vicg.projeto.engine.core.GameCore;
 import br.usp.icmc.vicg.projeto.engine.core.Objeto;
 import br.usp.icmc.vicg.projeto.engine.core.Scene;
 import br.usp.icmc.vicg.projeto.engine.graphics.Camera;
@@ -8,7 +9,6 @@ import br.usp.icmc.vicg.projeto.game.components.CameraFollow;
 import br.usp.icmc.vicg.projeto.game.components.FollowObject;
 
 public class MyScene extends Scene{
-
     public MyScene() {
         super();
         Light light = new Light();
@@ -17,6 +17,7 @@ public class MyScene extends Scene{
         light.setDiffuseColor(new float[]{0.9f, 0.9f, 0.9f, 1.0f});
         light.setSpecularColor(new float[]{0.2f, 0.2f, 0.2f, 1.0f});
         setLight(light);
+        GameCore.getGame().addService(new CollisionManager());
     }
 
     @Override
@@ -52,6 +53,7 @@ public class MyScene extends Scene{
         //configurar objs
         nave.addComponent(new CameraFollow(nave, camera, getLight()));
         skybox.addComponent(new FollowObject(skybox, nave));
+        CollisionManager.obj.setCollidables(c);
     }
     
 }

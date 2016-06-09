@@ -11,9 +11,11 @@ public class Bullet extends Objeto{
         super();
         this.velocidade = direcao.multiply(10f);
         addComponent(new Mesh(this, "./data/bullet/bullet.obj"));
-        this.scale = new Vector3(0.1f, 0.1f, 0.1f);
+        this.scale = new Vector3(0.2f, 0.2f, 0.2f);
         this.position = posicao.copy();
         this.position.add(this.velocidade);
+        CollisionManager.obj.addBullet(this);
+        this.boundingSphere=2;
     }
 
     @Override
@@ -21,7 +23,8 @@ public class Bullet extends Objeto{
         super.update();
         this.position.add(velocidade);
         if(nupdates-- == 0){
-            this.getFather().removeChild(this);
+            this.destroy();
+            CollisionManager.obj.removeBullet(this);
         }
     }
     

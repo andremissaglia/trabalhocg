@@ -27,6 +27,12 @@ public class Vector3 {
         y += vec.y;
         z += vec.z;
     }
+    public float dist2(Vector3 vec){
+        float dx = vec.x-x;
+        float dy = vec.y-y;
+        float dz = vec.z-z;
+        return dx*dx+dy*dy+dz*dz;
+    }
     public void normalize(){
         float mod = norm();
         x /= mod;
